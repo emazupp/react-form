@@ -1,23 +1,23 @@
 import Dropdown from "./Dropdown";
+import InputText from "./InputText";
+import Button from "./Button";
 
 export default function Form() {
+  const handleSubmit = () => {
+    alert("form inviato");
+  };
+
   return (
     <>
-      <div class="input-group mb-3">
-        <span class="input-group-text" id="basic-addon1">
-          Titolo
-        </span>
-        <input type="text" class="form-control" placeholder="..." />
-      </div>
+      <form onSubmit={handleSubmit}>
+        <InputText text="Titolo" />
+        <InputText text="Autore" />
 
-      <div class="input-group mb-3">
-        <span class="input-group-text" id="basic-addon1">
-          Autore
-        </span>
-        <input type="text" class="form-control" placeholder="..." />
-      </div>
-
-      <Dropdown />
+        <div className="d-flex justify-content-between">
+          <Dropdown />
+          <Button text="Invia" />
+        </div>
+      </form>
     </>
   );
 }
