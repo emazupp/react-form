@@ -9,20 +9,23 @@ export default function Main() {
   const [status, setStatus] = useState("");
   const [editedTitle, setEditedTitle] = useState("");
   const [articles, setArticle] = useState(articoli);
+  const [articleID, setArticleID] = useState(1);
 
   const handleCreate = (e) => {
     e.preventDefault();
-    const newArticle = { title, author, status };
+    setArticleID(articleID + 1);
+    const newArticle = { id: articleID, title, author, status };
+    console.log(newArticle);
     setArticle([...articles, newArticle]);
   };
 
-  const handleDelete = (title) => {
-    setArticle(articles.filter((item) => item.title != title));
+  const handleDelete = (id) => {
+    setArticle(articles.filter((item) => item.id != id));
   };
 
-  const handleEdit = (event, title) => {
+  const handleEdit = (event, id) => {
     event.preventDefault();
-    const indexEditArticle = articles.findIndex((item) => item.title == title);
+    const indexEditArticle = articles.findIndex((item) => item.id == id);
     const newArticles = articles;
     newArticles[indexEditArticle].title = editedTitle;
     setArticle(newArticles);
@@ -51,7 +54,8 @@ export default function Main() {
             <>
               <div key={item.title} className="col-3">
                 <div className="card p-3">
-                  <form onSubmit={(event) => handleEdit(event, item.title)}>
+                  <h5 className="fw-bold">ID Articolo: {item.id}</h5>
+                  <form onSubmit={(event) => handleEdit(event, item.id)}>
                     {item.title && (
                       <p className="d-flex align-items-center gap-1">
                         <b>Titolo:</b>
@@ -76,7 +80,7 @@ export default function Main() {
                     <div className="d-flex justify-content-end gap-2">
                       <Button
                         icon="trash"
-                        title={item.title}
+                        id={item.id}
                         handleFunction={handleDelete}
                       />
                       <button type="submit" className="btn btn-warning">
