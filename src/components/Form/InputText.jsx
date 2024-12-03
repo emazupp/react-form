@@ -1,10 +1,15 @@
-export default function InputText({ text }) {
+export default function InputText({ text, setFunction }) {
   return (
-    <div class="input-group mb-3">
-      <span class="input-group-text" id="basic-addon1">
+    <div className="input-group mb-3">
+      <span className="input-group-text" id="basic-addon1">
         {text}
       </span>
-      <input type="text" class="form-control" placeholder="..." />
+      <input
+        type="text"
+        className="form-control"
+        placeholder="..."
+        onChange={(e) => setFunction(e.target.value)}
+      />
     </div>
   );
 }
