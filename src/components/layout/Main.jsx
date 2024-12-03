@@ -11,6 +11,7 @@ export default function Main() {
   const [articles, setArticle] = useState(articoli);
   const [articleID, setArticleID] = useState(1);
 
+  /* CREATE */
   const handleCreate = (e) => {
     e.preventDefault();
     setArticleID(articleID + 1);
@@ -19,10 +20,12 @@ export default function Main() {
     setArticle([...articles, newArticle]);
   };
 
+  /* DELETE */
   const handleDelete = (id) => {
     setArticle(articles.filter((item) => item.id != id));
   };
 
+  /* EDIT */
   const handleEdit = (event, id) => {
     event.preventDefault();
     const indexEditArticle = articles.findIndex((item) => item.id == id);
