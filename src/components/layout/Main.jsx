@@ -6,11 +6,12 @@ import Button from "../Button";
 export default function Main() {
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
+  const [status, setStatus] = useState("");
   const [articles, setArticle] = useState(articoli);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newArticle = { title, author };
+    const newArticle = { title, author, status };
     setArticle([...articles, newArticle]);
   };
 
@@ -28,6 +29,7 @@ export default function Main() {
               handleSubmit={handleSubmit}
               setTitle={setTitle}
               setAuthor={setAuthor}
+              setStatus={setStatus}
             />
           </div>
         </div>
@@ -58,12 +60,12 @@ export default function Main() {
                     <Button
                       icon="trash"
                       title={item.title}
-                      handleDelete={handleDelete}
+                      handleFunction={handleDelete}
                     />
                     <Button
                       icon="edit"
                       title={item.title}
-                      handleDelete={handleDelete}
+                      handleFunction={handleDelete}
                     />
                   </div>
                 </div>

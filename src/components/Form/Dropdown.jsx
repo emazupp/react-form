@@ -1,6 +1,13 @@
 import "bootstrap/js/dist/dropdown";
+import { useState } from "react";
 
-export default function Dropdown() {
+export default function Dropdown({ setStatus }) {
+  const [selectedStatus, setSelectedStatus] = useState("stato");
+  const handleSelectedStatus = (selection) => {
+    setSelectedStatus(selection);
+    setStatus(selection);
+  };
+
   return (
     <div className="dropdown">
       <button
@@ -9,18 +16,20 @@ export default function Dropdown() {
         data-bs-toggle="dropdown"
         aria-expanded="false"
       >
-        Stato
+        {selectedStatus}
       </button>
       <ul className="dropdown-menu">
-        <li>
-          <a className="dropdown-item" href="#">
-            draft
-          </a>
+        <li
+          className="dropdown-item"
+          onClick={() => handleSelectedStatus("draft")}
+        >
+          draft
         </li>
-        <li>
-          <a className="dropdown-item" href="#">
-            published
-          </a>
+        <li
+          className="dropdown-item"
+          onClick={() => handleSelectedStatus("published")}
+        >
+          published
         </li>
       </ul>
     </div>
