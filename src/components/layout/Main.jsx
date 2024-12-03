@@ -4,12 +4,14 @@ import { useState } from "react";
 import Button from "../Button";
 
 export default function Main() {
+  const starterID = articoli[articoli.length - 1].id + 1;
+
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [status, setStatus] = useState("");
   const [editedTitle, setEditedTitle] = useState("");
   const [articles, setArticle] = useState(articoli);
-  const [articleID, setArticleID] = useState(1);
+  const [articleID, setArticleID] = useState(starterID);
 
   /* CREATE */
   const handleCreate = (e) => {
