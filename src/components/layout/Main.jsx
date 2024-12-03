@@ -4,20 +4,22 @@ import { useState } from "react";
 import Button from "../Button";
 
 export default function Main() {
-  const starterID = articoli[articoli.length - 1].id + 1;
-
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [status, setStatus] = useState("");
   const [editedTitle, setEditedTitle] = useState("");
   const [articles, setArticle] = useState(articoli);
-  const [articleID, setArticleID] = useState(starterID);
 
+  console.log(articles);
   /* CREATE */
   const handleCreate = (e) => {
     e.preventDefault();
-    setArticleID(articleID + 1);
-    const newArticle = { id: articleID, title, author, status };
+    const newArticle = {
+      id: articoli[articoli.length - 1].id + 1,
+      title,
+      author,
+      status,
+    };
     console.log(newArticle);
     setArticle([...articles, newArticle]);
   };
@@ -56,46 +58,44 @@ export default function Main() {
       <div className="row mt-5 g-5">
         {articles.map((item) => {
           return (
-            <>
-              <div key={item.title} className="col-3">
-                <div className="card p-3">
-                  <h5 className="fw-bold">ID Articolo: {item.id}</h5>
-                  <form onSubmit={(event) => handleEdit(event, item.id)}>
-                    {item.title && (
-                      <p className="d-flex align-items-center gap-1">
-                        <b>Titolo:</b>
-                        <input
-                          type="text"
-                          className="form-control"
-                          placeholder={item.title}
-                          onChange={(e) => setEditedTitle(e.target.value)}
-                        />
-                      </p>
-                    )}
-                    {item.author && (
-                      <p>
-                        <b>Autore:</b> {item.author}
-                      </p>
-                    )}
-                    {item.status && (
-                      <p>
-                        <b>Stato:</b> {item.status}
-                      </p>
-                    )}
-                    <div className="d-flex justify-content-end gap-2">
-                      <Button
-                        icon="trash"
-                        id={item.id}
-                        handleFunction={handleDelete}
+            <div key={item.id} className="col-3">
+              <div className="card p-3">
+                <h5 className="fw-bold">ID Articolo: {item.id}</h5>
+                <form onSubmit={(event) => handleEdit(event, item.id)}>
+                  {item.title && (
+                    <p className="d-flex align-items-center gap-1">
+                      <b>Titolo:</b>
+                      <input
+                        type="text"
+                        className="form-control"
+                        placeholder={item.title}
+                        onChange={(e) => setEditedTitle(e.target.value)}
                       />
-                      <button type="submit" className="btn btn-warning">
-                        <i className="fa-solid fa-edit fa-xl"></i>
-                      </button>
-                    </div>
-                  </form>
-                </div>
+                    </p>
+                  )}
+                  {item.author && (
+                    <p>
+                      <b>Autore:</b> {item.author}
+                    </p>
+                  )}
+                  {item.status && (
+                    <p>
+                      <b>Stato:</b> {item.status}
+                    </p>
+                  )}
+                  <div className="d-flex justify-content-end gap-2">
+                    <Button
+                      icon="trash"
+                      id={item.id}
+                      handleFunction={handleDelete}
+                    />
+                    <button type="submit" className="btn btn-warning">
+                      <i className="fa-solid fa-edit fa-xl"></i>
+                    </button>
+                  </div>
+                </form>
               </div>
-            </>
+            </div>
           );
         })}
       </div>
