@@ -10,12 +10,11 @@ export default function Main() {
   const [editedTitle, setEditedTitle] = useState("");
   const [articles, setArticle] = useState(articoli);
 
-  console.log(articles);
   /* CREATE */
   const handleCreate = (e) => {
     e.preventDefault();
     const newArticle = {
-      id: articoli[articoli.length - 1].id + 1,
+      id: articles[articles.length - 1].id + 1,
       title,
       author,
       status,
@@ -36,7 +35,9 @@ export default function Main() {
     const newArticles = articles;
     newArticles[indexEditArticle].title = editedTitle;
     setArticle(newArticles);
+    alert("Titolo modificato in: " + editedTitle);
     setEditedTitle("");
+    console.log(editedTitle);
   };
 
   return (
